@@ -1,4 +1,4 @@
-package com.steam2wish.model;
+package com.steam2wish.model.entity;
 
 import java.util.ArrayList;
 
