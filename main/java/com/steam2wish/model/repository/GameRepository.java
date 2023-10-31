@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class GameRepository extends RepositoryTemplate{
+public class GameRepository extends RepositoryGlobal implements RepositoryTemplate{
 
     @Override
     public ArrayList<Entity> getAll() {

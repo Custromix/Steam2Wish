@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class PlayerRepository extends RepositoryTemplate{
+public class PlayerRepository extends RepositoryGlobal implements RepositoryTemplate{
 
     @Override
     public ArrayList<Entity> getAll() {

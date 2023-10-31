@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class RentRepository extends RepositoryTemplate{
+public class RentRepository extends RepositoryGlobal implements RepositoryTemplate{
 
     @Override
     public ArrayList<Entity> getAll() {
