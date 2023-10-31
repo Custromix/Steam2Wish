@@ -52,7 +52,7 @@ public class PlayerRepository extends RepositoryTemplate{
     }
 
     @Override
-    public boolean add() {
+    public boolean add(Entity newEntity) {
         return false;
     }
 
