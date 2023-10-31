@@ -2,7 +2,7 @@ package com.steam2wish.model.entity;
 
 import java.util.Date;
 
-public class Rent {
+public class Rent extends Entity{
     private Player rentPlayer;
     private Game rentGame;
     private Date rentStartDate;
@@ -14,6 +14,10 @@ public class Rent {
         this.rentStartDate = new Date();
         this.setRentEndDate(newEndDate);
     }
+
+    public Rent(){};
+
+
 
     public Player getRentPlayer() {
         return this.rentPlayer;

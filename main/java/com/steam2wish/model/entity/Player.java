@@ -1,17 +1,31 @@
 package com.steam2wish.model.entity;
 
+import com.utils.BCryptManager;
+
 import java.util.ArrayList;
 
-public class Player {
+public class Player extends Entity{
+    private int id;
     private String name;
     private String firstname;
     private String username;
+    private String password;
     private ArrayList<Game> rentGames = new ArrayList<Game>();
 
     public Player(String newName, String newFirstname, String newUsername){
         this.setName(newName);
         this.setFirstname(newFirstname);
         this.setUsername(newUsername);
+    }
+
+    public Player(){}
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -38,6 +52,15 @@ public class Player {
         this.username = newUsername;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        BCryptManager bcrypt = new BCryptManager();
+        this.password = bcrypt.hash(password);
+    }
+
     public ArrayList<Game> getRentGames() {
         return this.rentGames;
     }
@@ -46,4 +69,5 @@ public class Player {
         this.rentGames.add(newGames);
         return this.rentGames;
     }
+
 }

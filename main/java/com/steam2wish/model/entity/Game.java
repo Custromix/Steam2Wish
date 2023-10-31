@@ -2,14 +2,18 @@ package com.steam2wish.model.entity;
 
 import java.util.Date;
 
-public class Game {
+public class Game extends Entity{
     private String name;
     private Date releaseDate;
     private String description;
 
-    public Game(){
-
+    public Game(String newName, Date newReleaseDate, String newDescription){
+        this.setName(newName);
+        this.setReleaseDate(newReleaseDate);
+        this.setDescription(newDescription);
     }
+
+    public Game(){}
 
     public String getName() {
         return name;

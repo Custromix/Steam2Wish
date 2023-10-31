@@ -1,4 +1,4 @@
-package com.steam2wish.controller.player;
+package com.steam2wish.controller.authenticator.admin;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "edit-player", value = "/player/edit")
-public class EditPlayerController extends HttpServlet {
+@WebServlet(name = "log-admin", value = "/log-admin")
+public class AuthenticatorLoginController extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);

@@ -7,11 +7,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "index", value = "/index")
-public class IndexController extends HttpServlet {
+@WebServlet(name = "index", value = "")
+public class IndexController extends Controller {
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        super.doGet(request, response);
+
+        if (session.getAttribute("id") != null){
+            String something = "Gros prout ta mère";
+            request.setAttribute("afficher", something);
+            this.getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
+        }else{
+            this.getServletContext().getRequestDispatcher("/Auth/User/login.jsp").forward(request,response);
+        }
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        super.doPost(request, response);
     }
 
     public void destroy() {
