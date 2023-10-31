@@ -11,7 +11,7 @@ public class Rent extends Entity{
     private LocalDateTime rentStartDate;
     private LocalDateTime rentEndDate;
 
-    public Rent(Player newPlayer, Game newGame, Date newEndDate){
+    public Rent(Player newPlayer, Game newGame, LocalDateTime newEndDate){
         this.setRentPlayer(newPlayer);
         this.setRentGame(newGame);
         this.rentStartDate = LocalDateTime.now();
