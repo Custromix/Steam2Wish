@@ -22,7 +22,7 @@ public class PlayerRepository extends RepositoryGlobal implements RepositoryTemp
                 newPlayer.setName(result.getString(2));
                 newPlayer.setFirstname(result.getString(3));
                 newPlayer.setUsername(result.getString(4));
-                players.add(new Player());
+                players.add(newPlayer);
             }
         }catch (SQLException e){
             error = e.getMessage();
