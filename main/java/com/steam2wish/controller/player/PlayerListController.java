@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(name = "UserManager", value = "/UserManager")
+@WebServlet(name = "userManager", value = "/userManager")
 public class PlayerListController extends Controller {
 
 
@@ -22,9 +22,15 @@ public class PlayerListController extends Controller {
         super.doGet(request, response);
         PlayerRepository rep = new PlayerRepository();
         ArrayList<Entity> players = new ArrayList<>();
+        ArrayList<Player> betterplayer =new ArrayList<>();
         players = rep.getAll();
         Player p = (Player)players.get(0);
-        request.setAttribute("Player", p.getUsername());
+
+        for ( Entity e:players) {
+            betterplayer.add((Player)e);
+        }
+        request.setAttribute("Player",betterplayer);
+
         this.getServletContext().getRequestDispatcher("/Auth/User/userManager.jsp").forward(request,response);
     }
     public void destroy() {
