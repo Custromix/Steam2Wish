@@ -14,14 +14,9 @@ public class IndexController extends Controller {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         super.doGet(request, response);
 
-        if (session.getAttribute("id") != null){
-            String something = "Gros prout ta mère";
-            request.setAttribute("afficher", something);
-            this.getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
-        }else{
-            this.getServletContext().getRequestDispatcher("/Auth/User/login.jsp").forward(request,response);
-        }
-
+        String something = "Gros prout ta mère";
+        request.setAttribute("afficher", something);
+        this.getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
     }
 
     @Override
