@@ -163,7 +163,7 @@
                 <div class="live-stream">
                     <div class="col-lg-12">
                         <div class="heading-section">
-                            <h4><em>Most Popular</em> Live Stream</h4>
+                            <h4><em>All</em> Games</h4>
                         </div>
                     </div>
                     <div class="row">
