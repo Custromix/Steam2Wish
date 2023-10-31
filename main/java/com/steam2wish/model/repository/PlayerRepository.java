@@ -14,7 +14,7 @@ public class PlayerRepository extends RepositoryTemplate{
     public ArrayList<Entity> getAll() {
         ArrayList<Entity> players = new ArrayList<>();
         try{
-            PreparedStatement selectPlayer = myConnection.prepareStatement("SELECT * FROM players");
+            PreparedStatement selectPlayer = myConnection.prepareStatement("SELECT * FROM members");
             ResultSet result = selectPlayer.executeQuery();
             while(result.next()) {
                 Player newPlayer = new Player();
@@ -35,7 +35,7 @@ public class PlayerRepository extends RepositoryTemplate{
         Player player = new Player();
 
         try{
-            PreparedStatement selectPlayer = myConnection.prepareStatement("SELECT * FROM players WHERE ID_PLAYERS = ?");
+            PreparedStatement selectPlayer = myConnection.prepareStatement("SELECT * FROM members WHERE ID_MEMBERS = ?");
             selectPlayer.setString(1, String.valueOf(id));
             ResultSet result = selectPlayer.executeQuery();
             while(result.next()) {
