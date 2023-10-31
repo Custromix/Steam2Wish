@@ -17,5 +17,9 @@ public abstract class AuthenticatorUserController extends Controller {
     protected Player player;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        session = request.getSession();
+        if (session.getAttribute("id") != null){
+            this.getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
+        }
     }
 }

@@ -2,6 +2,7 @@ package com.steam2wish.model.repository;
 
 import com.steam2wish.model.entity.Entity;
 import com.steam2wish.model.entity.Player;
+import com.steam2wish.model.entity.Rent;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -57,8 +58,24 @@ public class PlayerRepository extends RepositoryGlobal implements RepositoryTemp
     }
 
     @Override
-    public boolean edit() {
-        return false;
+    public boolean edit(Entity newEntity) {
+        Player newPlayer = (Player) newEntity;
+        boolean isUpdate = true;
+
+        try{
+            PreparedStatement insertGame = myConnection.prepareStatement("UPDATE members SET NAME = ?, FIRSTNAME = ?, USERNAME = ?, WHERE ID_MEMBERS = ?");
+            insertGame.setString(1, newPlayer.getName());
+            insertGame.setString(2, newPlayer.getFirstname());
+            insertGame.setString(3, newPlayer.getUsername().toString());
+            insertGame.setString(4, String.valueOf(newPlayer.getId()));
+            insertGame.executeUpdate();
+
+        }catch (SQLException e){
+            error = e.getMessage();
+            isUpdate = false;
+        }
+
+        return isUpdate;
     }
 
     @Override

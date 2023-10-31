@@ -8,6 +8,6 @@ public interface RepositoryTemplate {
     public abstract ArrayList<Entity> getAll();
     public abstract Entity get(int id);
     public abstract boolean add(Entity newEntity);
-    public abstract boolean edit();
+    public abstract boolean edit(Entity newEntity);
     public abstract boolean remove();
 }
