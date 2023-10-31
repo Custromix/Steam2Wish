@@ -83,8 +83,27 @@ public class GameRepository extends RepositoryGlobal implements RepositoryTempla
     }
 
     @Override
-    public boolean edit() {
-        return false;
+    public boolean edit(Entity newEntity) {
+        Game newGame = (Game)newEntity;
+        boolean isUpdate = true;
+
+        try{
+            PreparedStatement insertGame = myConnection.prepareStatement("UPDATE games SET ID_ADMIN = ?, NAME = ?, RELEASED_DATE = ?, DESCRIPTION = ?, ADDED_DATE = ? WHERE ID_GAMES = ?");
+
+            insertGame.setString(1, String.valueOf(newGame.getAdmin().getId()));
+            insertGame.setString(2, newGame.getName());
+            insertGame.setString(3, newGame.getReleaseDate().toString());
+            insertGame.setString(4, newGame.getDescription());
+            insertGame.setString(5, newGame.getAddedDate().toString());
+            insertGame.setString(6, String.valueOf(newGame.getId()));
+            insertGame.executeUpdate();
+
+        }catch (SQLException e){
+            error = e.getMessage();
+            isUpdate = false;
+        }
+
+        return isUpdate;
     }
 
     @Override

@@ -90,8 +90,25 @@ public class RentRepository extends RepositoryGlobal implements RepositoryTempla
     }
 
     @Override
-    public boolean edit() {
-        return false;
+    public boolean edit(Entity newEntity) {
+        Rent newRent = (Rent)newEntity;
+        boolean isUpdate = true;
+
+        try{
+            PreparedStatement insertGame = myConnection.prepareStatement("UPDATE rent SET ID_MEMBERS = ?, ID_GAMES = ?, START_DATE = ?, END_DATE = ? WHERE ID_RENT = ?");
+            insertGame.setString(1, String.valueOf(newRent.getRentPlayer().getId()));
+            insertGame.setString(2, String.valueOf(newRent.getRentGame().getId()));
+            insertGame.setString(3, newRent.getRentStartDate().toString());
+            insertGame.setString(4, newRent.getRentEndDate().toString());
+            insertGame.setString(5, String.valueOf(newRent.getId()));
+            insertGame.executeUpdate();
+
+        }catch (SQLException e){
+            error = e.getMessage();
+            isUpdate = false;
+        }
+
+        return isUpdate;
     }
 
     @Override
