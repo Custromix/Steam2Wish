@@ -39,7 +39,7 @@ public class AuthenticatorUserRepository extends RepositoryGlobal {
         boolean queryState = true;
 
         try{
-            PreparedStatement insertPlayer = myConnection.prepareStatement("INSERT INTO players(NAME, FIRSTNAME, USERNAME, PASSWORD) VALUES (?,?,?,?)");
+            PreparedStatement insertPlayer = myConnection.prepareStatement("INSERT INTO Members(NAME, FIRSTNAME, USERNAME, PASSWORD) VALUES (?,?,?,?)");
             insertPlayer.setString(1, newPlayer.getName());
             insertPlayer.setString(2, newPlayer.getFirstname());
             insertPlayer.setString(3, newPlayer.getUsername());
