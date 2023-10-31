@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class RentRepository extends RepositoryTemplate{
+public class RentRepository extends RepositoryGlobal implements RepositoryTemplate{
 
     @Override
     public ArrayList<Entity> getAll() {
@@ -69,8 +69,24 @@ public class RentRepository extends RepositoryTemplate{
     }
 
     @Override
-    public boolean add() {
-        return false;
+    public boolean add(Entity newEntity) {
+        Rent newRent = (Rent)newEntity;
+        boolean isInsert = true;
+
+        try{
+            PreparedStatement insertGame = myConnection.prepareStatement("INSERT INTO rent(ID_MEMBERS, ID_GAMES, START_DATE, END_DATE) VALUES (?,?,?,?)");
+            insertGame.setString(1, String.valueOf(newRent.getRentPlayer().getId()));
+            insertGame.setString(2, String.valueOf(newRent.getRentGame().getId()));
+            insertGame.setString(3, newRent.getRentStartDate().toString());
+            insertGame.setString(4, newRent.getRentEndDate().toString());
+            insertGame.executeUpdate();
+
+        }catch (SQLException e){
+            error = e.getMessage();
+            isInsert = false;
+        }
+
+        return isInsert;
     }
 
     @Override

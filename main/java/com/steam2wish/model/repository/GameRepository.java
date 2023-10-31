@@ -3,17 +3,13 @@ package com.steam2wish.model.repository;
 import com.steam2wish.model.entity.Admin;
 import com.steam2wish.model.entity.Entity;
 import com.steam2wish.model.entity.Game;
-import com.steam2wish.model.entity.Player;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 
-public class GameRepository extends RepositoryTemplate{
+public class GameRepository extends RepositoryGlobal implements RepositoryTemplate{
 
     @Override
     public ArrayList<Entity> getAll() {
@@ -65,8 +61,25 @@ public class GameRepository extends RepositoryTemplate{
     }
 
     @Override
-    public boolean add() {
-        return false;
+    public boolean add(Entity newEntity) {
+        Game newGame = (Game)newEntity;
+        boolean isInsert = true;
+
+        try{
+            PreparedStatement insertGame = myConnection.prepareStatement("INSERT INTO games(ID_ADMIN, NAME, RELEASED_DATE, DESCRIPTION, ADDED_DATE) VALUES (?,?,?,?,?)");
+            insertGame.setString(1, String.valueOf(newGame.getAdmin().getId()));
+            insertGame.setString(2, newGame.getName());
+            insertGame.setString(3, newGame.getReleaseDate().toString());
+            insertGame.setString(4, newGame.getDescription());
+            insertGame.setString(5, newGame.getAddedDate().toString());
+            insertGame.executeUpdate();
+
+        }catch (SQLException e){
+            error = e.getMessage();
+            isInsert = false;
+        }
+
+        return isInsert;
     }
 
     @Override

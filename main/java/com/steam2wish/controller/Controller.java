@@ -13,9 +13,9 @@ public abstract class Controller extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         session = request.getSession();
-        //if (session.getAttribute("id") == null){
-           // this.getServletContext().getRequestDispatcher("/Auth/User/login.jsp").forward(request,response);
-        //}
+        if (session.getAttribute("id") == null){
+            this.getServletContext().getRequestDispatcher("/Auth/User/login.jsp").forward(request,response);
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
