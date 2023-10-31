@@ -12,24 +12,43 @@ public class PlayerRepository extends RepositoryTemplate{
 
     @Override
     public ArrayList<Entity> getAll() {
-        ArrayList<Entity> allPlayer = new ArrayList<>();
-        return allPlayer;
+        ArrayList<Entity> players = new ArrayList<>();
+        try{
+            PreparedStatement selectPlayer = myConnection.prepareStatement("SELECT * FROM players");
+            ResultSet result = selectPlayer.executeQuery();
+            while(result.next()) {
+                Player newPlayer = new Player();
+                newPlayer.setId(Integer.parseInt(result.getString(1)));
+                newPlayer.setName(result.getString(2));
+                newPlayer.setFirstname(result.getString(3));
+                newPlayer.setUsername(result.getString(4));
+                players.add(new Player());
+            }
+        }catch (SQLException e){
+            error = e.getMessage();
+        }
+        return players;
     }
 
     @Override
     public Player get(int id) {
+        Player player = new Player();
+
         try{
             PreparedStatement selectPlayer = myConnection.prepareStatement("SELECT * FROM players WHERE ID_PLAYERS = ?");
             selectPlayer.setString(1, String.valueOf(id));
             ResultSet result = selectPlayer.executeQuery();
             while(result.next()) {
-                //hashedPassword = result.getString(1);
+                player.setId(Integer.parseInt(result.getString(1)));
+                player.setName(result.getString(2));
+                player.setFirstname(result.getString(3));
+                player.setUsername(result.getString(4));
             }
         }catch (SQLException e){
             error = e.getMessage();
         }
 
-        return new Player();
+        return player;
     }
 
     @Override
