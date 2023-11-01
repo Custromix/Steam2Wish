@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(name = "edit-game", value = "/game/edit")
-public class EditGameController extends HttpServlet {
+public class EditGameController extends GameController {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
